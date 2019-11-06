@@ -1,9 +1,11 @@
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class Task {
 	private String description = null;
 	private boolean isComplete = false;
 	private int priority = 3;
-	
+	private ArrayList<Tag> list = new ArrayList<Tag>();
 	
 	public Task(String description) {
 		super();
@@ -47,6 +49,18 @@ public class Task {
 	
 	public void setPriority(int priority) {
 		this.priority = priority;
+	}
+	public void addTag(String name) {
+		Tag tag = new Tag().getTag(name);
+		list.add(tag);		
+	}
+	
+	public void removeTag(String name) {
+		Tag tag = new Tag().getTag(name);
+		list.remove(tag);
+	}
+	public Collection<Tag> getTags(){
+		return list;
 	}
 
 }
