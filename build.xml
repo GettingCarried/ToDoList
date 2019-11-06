@@ -10,27 +10,23 @@
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
     <path id="JUnit 5.libraryclasspath">
-        <pathelement location="../../../../../../../eclipse-java-2019-06/plugins/org.junit.jupiter.api_5.4.0.v20190212-2109.jar"/>
-        <pathelement location="../../../../../../../eclipse-java-2019-06/plugins/org.junit.jupiter.engine_5.4.0.v20190212-2109.jar"/>
-        <pathelement location="../../../../../../../eclipse-java-2019-06/plugins/org.junit.jupiter.migrationsupport_5.4.0.v20190212-2109.jar"/>
-        <pathelement location="../../../../../../../eclipse-java-2019-06/plugins/org.junit.jupiter.params_5.4.0.v20190212-2109.jar"/>
-        <pathelement location="../../../../../../../eclipse-java-2019-06/plugins/org.junit.platform.commons_1.4.0.v20190212-2109.jar"/>
-        <pathelement location="../../../../../../../eclipse-java-2019-06/plugins/org.junit.platform.engine_1.4.0.v20190212-2109.jar"/>
-        <pathelement location="../../../../../../../eclipse-java-2019-06/plugins/org.junit.platform.launcher_1.4.0.v20190212-2109.jar"/>
-        <pathelement location="../../../../../../../eclipse-java-2019-06/plugins/org.junit.platform.runner_1.4.0.v20190212-2109.jar"/>
-        <pathelement location="../../../../../../../eclipse-java-2019-06/plugins/org.junit.platform.suite.api_1.4.0.v20190212-2109.jar"/>
-        <pathelement location="../../../../../../../eclipse-java-2019-06/plugins/org.junit.vintage.engine_5.4.0.v20190212-2109.jar"/>
-        <pathelement location="../../../../../../../eclipse-java-2019-06/plugins/org.opentest4j_1.1.1.v20190212-2109.jar"/>
-        <pathelement location="../../../../../../../eclipse-java-2019-06/plugins/org.apiguardian_1.0.0.v20190212-2109.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.api_5.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.engine_5.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.params_5.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.commons_1.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.engine_1.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.launcher_1.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.runner_1.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.suite.api_1.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.vintage.engine_5.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.opentest4j_1.2.0.v20190826-0900.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.apiguardian_1.1.0.v20190826-0900.jar"/>
         <pathelement location="newfolder/junit.jar"/>
         <pathelement location="newfolder/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
     </path>
     <path id="ToDoList Workshop.classpath">
         <pathelement location="bin"/>
-        <path refid="JUnit 5.libraryclasspath"/>
-    </path>
-    <path id="run.test.classpath">
-        <path refid="ToDoList Workshop.classpath"/>
         <path refid="JUnit 5.libraryclasspath"/>
     </path>
     <path id="run.ToDoListTest.classpath">
@@ -41,13 +37,11 @@
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
-                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="test">
-                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -56,7 +50,7 @@
         <delete dir="bin"/>
     </target>
     <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project,ToDoListTest,junitreport" name="build"/>
+    <target depends="build-subprojects,build-project,junitreport,ToDoListTest" name="build"/>
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
@@ -79,15 +73,6 @@
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
-    </target>
-    <target name="test">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="ToDoListTest" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="run.test.classpath"/>
-        </junit>
     </target>
     <target name="ToDoListTest">
         <mkdir dir="${junit.output.dir}"/>
