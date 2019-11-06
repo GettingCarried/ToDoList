@@ -20,8 +20,8 @@ public class ToDoListTest extends TestCase{
 	@Before
 	 public void setUp() throws Exception{
 		//Initialise Test Fixtures
-		task1 = new Task("task1", false);
-		task2 = new Task("task2", false);
+		task1 = new Task("task1", false, 1);
+		task2 = new Task("task2", false, 2);
 	}
 	@After
 	 public void tearDown() throws Exception{
@@ -71,5 +71,13 @@ public class ToDoListTest extends TestCase{
 				fail();
 			}
 		}
+	}
+	
+	@Test
+	public void testFilterPriority() {
+		int priority = task1.getPriority();
+		toDoList.addTask(task1);
+		assertEquals(toDoList.getPriority(task1.getDescription()), priority);
+		assertFalse(toDoList.getPriority(task1.getDescription()) == 3);
 	}
 }

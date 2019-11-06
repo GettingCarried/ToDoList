@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Set;
 import java.util.HashSet;
 
 public class ToDoList {
@@ -48,6 +47,23 @@ public class ToDoList {
 		Collection<Task> result = new HashSet<Task>();
 		for (Task task : getAllTasks()) {
 			if (task.isComplete()) {
+				result.add(task);
+			}
+		}
+		return result;
+	}
+	
+	public int getPriority(String description) {
+		return tasks.get(description).getPriority();
+	}
+	
+	public Collection<Task> filterPriority(int priority) {
+		if (priority < 0 || priority > 5 ) {
+			return null;
+		}
+		Collection<Task> result = new HashSet<Task>();
+		for (Task task : getAllTasks()) {
+			if (task.getPriority() == priority) {
 				result.add(task);
 			}
 		}
