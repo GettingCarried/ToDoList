@@ -42,6 +42,13 @@ public class ToDoList {
 	public Collection<Task> getAllTasks() {
 		return tasks.values();
 	}
+	
+	public void modifyTask(String oldDescription, String newDescription) {
+		Task task= tasks.get(oldDescription);
+		removeTask(oldDescription);
+		task.setDescription(newDescription);
+		addTask(task);
+	}
 
 	public Collection<Task> getCompletedTasks() {
 		// Add code here
