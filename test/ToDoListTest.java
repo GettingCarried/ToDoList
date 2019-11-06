@@ -5,6 +5,7 @@ import org.junit.Test;
 import junit.framework.*;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class ToDoListTest extends TestCase{
 	// Define Test Fixtures
@@ -36,6 +37,22 @@ public class ToDoListTest extends TestCase{
 		assertFalse(toDoList.getAllTasks().isEmpty());
 		assertEquals(toDoList.getTask(task1.getDescription()), task1);
 	}
+	@Test
+	public void testAddTags() {
+		assertTrue(toDoList.getAllTasks().isEmpty());
+		assertEquals(task1.getTags().size(),0);
+		task1.addTag("finance");
+		assertEquals(task1.getTags().size(),1);
+		task1.addTag("food");
+		assertEquals(task1.getTags().size(),2);
+		Iterator<Tag> iter = task1.getTags().iterator();
+		assertEquals(iter.next(),new Tag().getTag("finance"));
+		assertEquals(iter.next(),new Tag().getTag("food"));
+		
+	}
+	
+	
+	
 	@Test
 	public void testGetStatus() {
 		toDoList.addTask(task1);
