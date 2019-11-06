@@ -22,8 +22,8 @@
         <pathelement location="../../../../../../../eclipse-java-2019-06/plugins/org.junit.vintage.engine_5.4.0.v20190212-2109.jar"/>
         <pathelement location="../../../../../../../eclipse-java-2019-06/plugins/org.opentest4j_1.1.1.v20190212-2109.jar"/>
         <pathelement location="../../../../../../../eclipse-java-2019-06/plugins/org.apiguardian_1.0.0.v20190212-2109.jar"/>
-        <pathelement location="./newfolder/junit.jar"/>
-        <pathelement location="./newfolder/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+        <pathelement location="newfolder/junit.jar"/>
+        <pathelement location="newfolder/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
     </path>
     <path id="ToDoList Workshop.classpath">
         <pathelement location="bin"/>
