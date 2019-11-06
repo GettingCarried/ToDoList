@@ -51,6 +51,26 @@ public class ToDoListTest extends TestCase{
 		toDoList.removeTask(task1.getDescription());
 		assertNull(toDoList.getTask(task1.getDescription()));
 	}
+	
+	@Test
+	public void testModifyTask() {
+		assertTrue(toDoList.getAllTasks().isEmpty());
+		try {
+		toDoList.modifyTask("task1", "task2");
+		fail();
+		}
+		catch (NullPointerException ex) {
+		}
+		toDoList.addTask(task1);
+		assertEquals(toDoList.getTask("task1"), task1);
+		try {
+			toDoList.modifyTask("task1", "task2");
+			}
+			catch (NullPointerException ex) {
+			fail();
+			}
+		assertEquals(toDoList.getTask("task2"), task1);
+	}
 	@Test
 	public void testGetCompletedTasks() {
 		toDoList.addTask(task1);
